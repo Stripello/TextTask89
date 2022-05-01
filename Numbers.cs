@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Net;
 using System.Text;
-using System.Threading.Tasks;
-using System.Net;
 
 namespace TextTask89
 {
@@ -11,11 +7,10 @@ namespace TextTask89
     {
         internal static int AskNumber()
         {
-            int answer;
             while (true)
             {
                 Console.WriteLine("Please, enter integer between 0 and 1000");
-                if (int.TryParse(Console.ReadLine(), out answer) && answer <= 1000 && answer >= 0)
+                if (int.TryParse(Console.ReadLine(), out int answer) && answer <= 1000 && answer >= 0)
                 {
                     return answer;
                 }
@@ -40,8 +35,12 @@ namespace TextTask89
         }
         internal static string NameSomeNumber(int numberToName)
         {
+            if (numberToName == 0)
+            {
+                return "ноль";
+            }
             var answer = new StringBuilder();
-            switch (numberToName/100)
+            switch (numberToName / 100)
             {
                 case 10:
                     return "одна тысяча";
@@ -61,7 +60,7 @@ namespace TextTask89
                     answer.Append("пятьсот ");
                     break;
                 case 4:
-                    answer.Append("честыреста ");
+                    answer.Append("четыреста ");
                     break;
                 case 3:
                     answer.Append("триста ");
@@ -75,44 +74,73 @@ namespace TextTask89
             }
 
             numberToName -= numberToName / 100 * 100;
-            if ( numberToName <= 19 )
+            if (numberToName <= 19)
             {
-                switch (numberToName%10)
+                switch (numberToName)
                 {
+                    case 19:
+                        answer.Append("девятнадцать");
+                        break;
+                    case 18:
+                        answer.Append("восемнадцать");
+                        break;
+                    case 17:
+                        answer.Append("семнадцать");
+                        break;
+                    case 16:
+                        answer.Append("шестнадцать");
+                        break;
+                    case 15:
+                        answer.Append("пятнадцать");
+                        break;
+                    case 14:
+                        answer.Append("четырнадцать");
+                        break;
+                    case 13:
+                        answer.Append("тринадцать");
+                        break;
+                    case 12:
+                        answer.Append("двенадцать");
+                        break;
+                    case 11:
+                        answer.Append("одиннадцать");
+                        break;
+                    case 10:
+                        answer.Append("десять");
+                        break;
                     case 9:
-                        answer.Append("девят");
+                        answer.Append("девять");
                         break;
                     case 8:
-                        answer.Append("восем");
+                        answer.Append("восемь");
                         break;
                     case 7:
-                        answer.Append("сем");
+                        answer.Append("семь");
                         break;
                     case 6:
-                        answer.Append("шест");
+                        answer.Append("шесть");
                         break;
                     case 5:
-                        answer.Append("пят");
+                        answer.Append("пять");
                         break;
                     case 4:
-                        answer.Append("четыр");
+                        answer.Append("четыре");
                         break;
                     case 3:
                         answer.Append("три");
                         break;
                     case 2:
-                        answer.Append("две");
+                        answer.Append("два");
                         break;
                     case 1:
-                        answer.Append("оди");
+                        answer.Append("один");
                         break;
                 }
-                answer.Append("надцать");
-                return answer.ToString();
+                return answer.ToString().Trim();
             }
             else
             {
-                switch ( numberToName/10 )
+                switch (numberToName / 10)
                 {
                     case 9:
                         answer.Append("девяносто ");
@@ -170,7 +198,7 @@ namespace TextTask89
                         answer.Append("один");
                         break;
                 }
-                return answer.ToString();
+                return answer.ToString().Trim();
             }
         }
     }
